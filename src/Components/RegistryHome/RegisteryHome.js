@@ -9,23 +9,18 @@ const FormRegistration = () => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
 
-  const handleInputChange = (evt) => {
-    const { name, value } = evt.target;
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case "name":
-        setName(value);
-        break;
-      case "password":
-        setPassword(value);
-        break;
+        return setName(value);
       case "email":
-        setEmail(value);
-        break;
+        return setEmail(value);
+      case "password":
+        return setPassword(value);
       default:
         return;
     }
   };
-
   const handleSubmit = (el) => {
     el.preventDefault();
     dispatch(authOperations.register({ name, password, email }));
@@ -55,7 +50,7 @@ const FormRegistration = () => {
           name="name"
           value={name}
           required
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
         <label
         // className={s.nameinput}
@@ -66,9 +61,9 @@ const FormRegistration = () => {
           id={nanoid()}
           type="text"
           name="password"
-          value={name}
+          value={password}
           required
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
         <label />
         Email
@@ -77,9 +72,9 @@ const FormRegistration = () => {
           id={nanoid()}
           type="text"
           name="email"
-          value={name}
+          value={email}
           required
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
         <button
           type="submit"
