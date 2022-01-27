@@ -10,6 +10,7 @@ import {
   PURGE,
   PERSIST,
 } from "redux-persist";
+import persistReducer from "redux-persist/es/persistReducer";
 
 const logger = createLogger();
 
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(middleware),
+  // auth: persistReducer(_, authReducer),
   devTools: process.env.NODE_ENV === "development",
 });
 
