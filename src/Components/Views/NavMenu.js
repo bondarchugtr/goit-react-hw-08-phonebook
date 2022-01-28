@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, useResolvedPath, useMatch, Outlet } from "react-router-dom";
 import s from "./NavMenu.module.css";
-
-function CustomLink({ children, to, ...props }) {
+import UserMenu from "../UserMenu/UserMenu";
+import { useSelector } from "react-redux";
+import authSelectors from "../../redux/auth/auth-selector";
+export function CustomLink({ children, to, ...props }) {
   let resolved = useResolvedPath(to);
   let match = useMatch({ path: resolved.pathname, end: true });
   return (
@@ -20,33 +22,32 @@ function CustomLink({ children, to, ...props }) {
 }
 
 export function Layout() {
-  const [isLogin, setIsLogin] = useState(true);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
-    <div>
+    <header>
       <nav className={s.nav__menu__container}>
-        <ul className={s.nav__menu__list}>
-          <li className={s.nav__menu__item}>
-            <CustomLink to="/" className={s.nav__menu__text}>
-              Authorization
-            </CustomLink>
-          </li>
-          <li className={s.nav__menu__item}>
-            <CustomLink to="/register" className={s.nav__menu__text}>
-              Register
-            </CustomLink>
-          </li>
-          {isLogin && (
-            <li className={s.nav__menu__item}>
-              <CustomLink to="/contacts" className={s.nav__menu__text}>
-                Logout
-              </CustomLink>
-            </li>
-          )}
-        </ul>
+        {isLoggedIn ? (
+          <UserMenu />
+        ) : (
+          <>
+            <ul className={s.nav__menu__list}>
+              <li className={s.nav__menu__item}>
+                <CustomLink to="/" className={s.nav__menu__text}>
+                  Authorization
+                </CustomLink>
+              </li>
+              <li className={s.nav__menu__item}>
+                <CustomLink to="/register" className={s.nav__menu__text}>
+                  Register
+                </CustomLink>
+              </li>
+            </ul>
+          </>
+        )}
       </nav>
       <Outlet />
-    </div>
+    </header>
   );
 }
 

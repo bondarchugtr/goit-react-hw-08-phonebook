@@ -36,11 +36,11 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    rootReducer,
     auth: persistReducer(authPersistConfig, authReducer),
-    devTools: process.env.NODE_ENV === "development",
+    rootReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(middleware),
+  devTools: process.env.NODE_ENV === "development",
 });
 
 export const persistor = persistStore(store);
