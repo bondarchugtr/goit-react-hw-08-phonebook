@@ -34,12 +34,13 @@ const authPersistConfig = {
   whitelist: ["token"],
 };
 
-const store = configureStore({
-  reducer: rootReducer,
+export const store = configureStore({
+  reducer: {
+    rootReducer,
+    auth: persistReducer(authPersistConfig, authReducer),
+    devTools: process.env.NODE_ENV === "development",
+  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(middleware),
-  auth: persistReducer(authPersistConfig, authReducer),
-  devTools: process.env.NODE_ENV === "development",
 });
 
-export default store;
 export const persistor = persistStore(store);

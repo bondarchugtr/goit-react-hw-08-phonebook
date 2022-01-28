@@ -1,28 +1,41 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
+import authOperations from "../../redux/auth/auth-operations";
+import { useDispatch } from "react-redux";
+
 const FormAuthorization = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
-  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleInputChange = (evt) => {
-    const { name, value } = evt.target;
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case "name":
-        setLogin(value);
-        break;
+        return setName(value);
+      case "email":
+        return setEmail(value);
       case "password":
-        setPassword(value);
-        break;
+        return setPassword(value);
       default:
         return;
     }
   };
+
+  const handleSubmit = (el) => {
+    el.preventDefault();
+    dispatch(authOperations.logIn({ email, password }));
+    reset();
+  };
+  const reset = () => {
+    setEmail("");
+    setPassword("");
+  };
   return (
     <>
       <form
-      //   onSubmit={handleSubmit}
-      //   className={s.Forma}
+        onSubmit={handleSubmit}
+        //   className={s.Forma}
       >
         <label
         // className={s.nameinput}
@@ -32,10 +45,10 @@ const FormAuthorization = () => {
           //   className={s.Forma__input}
           id={nanoid()}
           type="text"
-          name="login"
-          value={name}
+          name="email"
+          value={email}
           required
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
         <label
         // className={s.nameinput}
@@ -46,9 +59,9 @@ const FormAuthorization = () => {
           id={nanoid()}
           type="text"
           name="password"
-          value={name}
+          value={password}
           required
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
         <button
           type="submit"

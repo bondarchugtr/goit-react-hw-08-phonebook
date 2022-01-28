@@ -10,10 +10,17 @@ const register = createAsyncThunk("auth/register", async (credentials) => {
   } catch (error) {}
 });
 
+const logIn = createAsyncThunk("auth/login", async (credentials) => {
+  try {
+    const { data } = await axios.post("/users/login", credentials);
+    return data;
+  } catch (error) {}
+});
+
 const operations = {
   register,
   // logOut,
-  // logIn,
+  logIn,
   // fetchCurrentUser,
 };
 export default operations;

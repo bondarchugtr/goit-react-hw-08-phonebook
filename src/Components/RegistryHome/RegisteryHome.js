@@ -23,7 +23,7 @@ const FormRegistration = () => {
   };
   const handleSubmit = (el) => {
     el.preventDefault();
-    dispatch(authOperations.register({ name, password, email }));
+    dispatch(authOperations.register({ name, email, password }));
     reset();
   };
 
