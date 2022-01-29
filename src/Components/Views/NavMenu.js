@@ -1,49 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useResolvedPath, useMatch, Outlet } from "react-router-dom";
 import s from "./NavMenu.module.scss";
 import UserMenu from "../UserMenu/UserMenu";
 import { useSelector } from "react-redux";
 import authSelectors from "../../redux/auth/auth-selector";
-export function CustomLink({ children, to, ...props }) {
-  let resolved = useResolvedPath(to);
-  let match = useMatch({ path: resolved.pathname, end: true });
-  return (
-    <div>
-      <NavLink
-        style={{ textDecoration: match ? "underline" : "none" }}
-        to={to}
-        {...props}
-      >
-        {children}
-      </NavLink>
-      {match && " (active)"}
-    </div>
-  );
-}
 
 export function Layout() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const [activeLinkAuth, setActiveLinkAuth] = useState(true);
+  const [activeLinkReg, setActiveLinkReg] = useState(false);
+
+  const handleClickAuth = () => {
+    setActiveLinkAuth(true);
+    setActiveLinkReg(false);
+  };
+
+  const handleClickReg = () => {
+    setActiveLinkAuth(false);
+    setActiveLinkReg(true);
+  };
 
   return (
     <header>
-      <nav className={s.nav__menu__container}>
+      <nav>
         {isLoggedIn ? (
           <UserMenu />
         ) : (
-          <>
-            <ul className={s.nav__menu__list}>
+          <div>
+            <ul className={s.nav__menu__container}>
               <li className={s.nav__menu__item}>
-                <CustomLink to="/authorization " className={s.nav__menu__text}>
+                <NavLink
+                  to="/"
+                  className={
+                    activeLinkAuth ? s.nav__menu__text__dec : s.nav__menu__text
+                  }
+                  onClick={handleClickAuth}
+                >
                   Authorization
-                </CustomLink>
+                </NavLink>
               </li>
               <li className={s.nav__menu__item}>
-                <CustomLink to="/register" className={s.nav__menu__text}>
+                <NavLink
+                  to="/register"
+                  className={
+                    activeLinkReg ? s.nav__menu__text__dec : s.nav__menu__text
+                  }
+                  onClick={handleClickReg}
+                >
                   Register
-                </CustomLink>
+                </NavLink>
               </li>
             </ul>
-          </>
+          </div>
         )}
       </nav>
       <Outlet />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
 import authOperations from "../../redux/auth/auth-operations";
-
+import s from "../Forma/InputPhonebook.module.scss";
 const FormRegistration = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -35,16 +35,11 @@ const FormRegistration = () => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        //   className={s.Forma}
-      >
-        <label
-        // className={s.nameinput}
-        />
-        login
+      <form onSubmit={handleSubmit} className={s.Forma}>
+        <label className={s.nameinput} />
+        <span>login</span>
         <input
-          //   className={s.Forma__input}
+          className={s.Forma__input}
           id={nanoid()}
           type="text"
           name="name"
@@ -52,12 +47,11 @@ const FormRegistration = () => {
           required
           onChange={handleChange}
         />
-        <label
-        // className={s.nameinput}
-        />
-        Password
+        <label className={s.nameinput} />
+        <span>Password</span>
+
         <input
-          //   className={s.Forma__input}
+          className={s.Forma__input}
           id={nanoid()}
           type="text"
           name="password"
@@ -66,9 +60,10 @@ const FormRegistration = () => {
           onChange={handleChange}
         />
         <label />
-        Email
+        <span>Email</span>
+
         <input
-          //   className={s.Forma__input}
+          className={s.Forma__input}
           id={nanoid()}
           type="text"
           name="email"
@@ -76,10 +71,7 @@ const FormRegistration = () => {
           required
           onChange={handleChange}
         />
-        <button
-          type="submit"
-          // className={s.Button__form}
-        >
+        <button type="submit" className={s.Button__form}>
           Registry
         </button>
       </form>

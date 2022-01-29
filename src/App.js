@@ -15,10 +15,10 @@ function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
   return (
-    <div className={`${s.Container} ${globalScss.container}`}>
+    <div className={globalScss.container}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/authorization" element={<FormAuthorization />} />
+          <Route index element={<FormAuthorization />} />
           <Route path="/register" element={<FormRegistration />} />
           <Route path="*" element={<NoMatch />} />
         </Route>

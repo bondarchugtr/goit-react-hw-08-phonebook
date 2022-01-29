@@ -4,7 +4,8 @@ import authOperations from "../../redux/auth/auth-operations";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import authSelectors from "../../redux/auth/auth-selector";
-import globalScss from "../../style/utils/global.module.scss";
+// import globalScss from "../../style/utils/global.module.scss";
+import s from "../Forma/InputPhonebook.module.scss";
 const FormAuthorization = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -32,18 +33,15 @@ const FormAuthorization = () => {
     setPassword("");
   };
   return (
-    <div className={globalScss.container}>
+    <div className="">
       {!isLoggedIn && (
-        <form
-          onSubmit={handleSubmit}
-          //   className={s.Forma}
-        >
+        <form onSubmit={handleSubmit} className={s.Forma}>
           <label
           // className={s.nameinput}
           />
-          login
+          <span>login</span>
           <input
-            //   className={s.Forma__input}
+            className={s.Forma__input}
             id={nanoid()}
             type="text"
             name="email"
@@ -54,9 +52,10 @@ const FormAuthorization = () => {
           <label
           // className={s.nameinput}
           />
-          Password
+          <span>Password</span>
+
           <input
-            //   className={s.Forma__input}
+            className={s.Forma__input}
             id={nanoid()}
             type="text"
             name="password"
@@ -64,10 +63,7 @@ const FormAuthorization = () => {
             required
             onChange={handleChange}
           />
-          <button
-            type="submit"
-            // className={s.Button__form}
-          >
+          <button type="submit" className={s.Button__form}>
             Login
           </button>
         </form>
