@@ -9,7 +9,7 @@ function App() {
     <div className={s.Container}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<FormAuthorization />} />
+          <Route path="/authorization" element={<FormAuthorization />} />
           <Route path="/register" element={<FormRegistration />} />
           <Route path="*" element={<NoMatch />} />
         </Route>

@@ -9,7 +9,7 @@ const ContactsList = ({ contacts = [], delContact, isLogin }) => {
           {contacts.map((el) => (
             <li key={el.id} className={s.Contact__item}>
               <span>
-                {el.name} : {el.phone}
+                {el.name} : {el.number}
               </span>
               <button
                 type="button"

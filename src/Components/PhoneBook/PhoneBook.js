@@ -7,13 +7,13 @@ import {
   fetchContacts,
 } from "../../redux/telbook/contacts-operation";
 
-import { filterContacts, getFilter } from "../../redux/telbook/selector.js";
+import { getContacts, getFilter } from "../../redux/telbook/selector.js";
 import Form from "../Forma/FormPhonebook";
 import ContactsList from "../PhoneContacts/PhoneContacts";
 import Filter from "../Filter/Filter";
 import s from "./PhoneBook.module.css";
 function PhoneBook() {
-  const contacts = useSelector(filterContacts);
+  const contacts = useSelector(getContacts);
   const filters = useSelector(getFilter);
   const dispatch = useDispatch();
 
@@ -29,6 +29,7 @@ function PhoneBook() {
       number: data.number,
     };
     if (availabilityContact(contact.name)) {
+      console.log(contact.name);
       return alert(`Name ${contact.name}already on your list
       `);
     } else {
@@ -62,7 +63,6 @@ function PhoneBook() {
       <div>
         <div>
           <h2 className={s.Contacts__title}>Contacts</h2>
-
           {contacts.length > 0 ? (
             <Filter filterContact={filterContact} value={filters} />
           ) : (

@@ -33,7 +33,7 @@ export function Layout() {
           <>
             <ul className={s.nav__menu__list}>
               <li className={s.nav__menu__item}>
-                <CustomLink to="/" className={s.nav__menu__text}>
+                <CustomLink to="/authorization " className={s.nav__menu__text}>
                   Authorization
                 </CustomLink>
               </li>

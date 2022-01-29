@@ -24,10 +24,6 @@ const middleware = {
   logger,
 };
 
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
-});
-
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -37,7 +33,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    rootReducer,
+    contacts: contactsReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(middleware),
   devTools: process.env.NODE_ENV === "development",
