@@ -7,6 +7,7 @@ import authOperations from "./redux/auth/auth-operations";
 import FormAuthorization from "./Components/AuthorizationHome/AuthorizationHome";
 import FormRegistration from "./Components/RegistryHome/RegisteryHome";
 import s from "./Components/PhoneBook/PhoneBook.module.scss";
+import globalScss from "./style/utils/global.module.scss";
 function App() {
   const dispatch = useDispatch();
 
@@ -14,7 +15,7 @@ function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
   return (
-    <div className={s.Container}>
+    <div className={`${s.Container} ${globalScss.container}`}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/authorization" element={<FormAuthorization />} />

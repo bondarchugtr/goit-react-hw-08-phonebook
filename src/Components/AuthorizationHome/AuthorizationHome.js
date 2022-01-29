@@ -4,6 +4,7 @@ import authOperations from "../../redux/auth/auth-operations";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import authSelectors from "../../redux/auth/auth-selector";
+import globalScss from "../../style/utils/global.module.scss";
 const FormAuthorization = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ const FormAuthorization = () => {
     setPassword("");
   };
   return (
-    <>
+    <div className={globalScss.container}>
       {!isLoggedIn && (
         <form
           onSubmit={handleSubmit}
@@ -71,7 +72,7 @@ const FormAuthorization = () => {
           </button>
         </form>
       )}
-    </>
+    </div>
   );
 };
 
