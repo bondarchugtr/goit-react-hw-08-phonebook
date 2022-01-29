@@ -1,5 +1,5 @@
-import React from 'react';
-import s from './Filter.module.css';
+import React from "react";
+import s from "./Filter.module.scss";
 const Filter = ({ filterContact, value }) => {
   return (
     <div>

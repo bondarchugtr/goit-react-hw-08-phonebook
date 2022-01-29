@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
 import contactsReducer from "../redux/telbook/reducer";
 import storage from "redux-persist/lib/storage";

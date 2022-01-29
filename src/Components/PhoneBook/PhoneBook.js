@@ -11,7 +11,7 @@ import { getContacts, getFilter } from "../../redux/telbook/selector.js";
 import Form from "../Forma/FormPhonebook";
 import ContactsList from "../PhoneContacts/PhoneContacts";
 import Filter from "../Filter/Filter";
-import s from "./PhoneBook.module.css";
+import s from "./PhoneBook.module.scss";
 function PhoneBook() {
   const contacts = useSelector(getContacts);
   const filters = useSelector(getFilter);

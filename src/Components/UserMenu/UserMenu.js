@@ -11,7 +11,7 @@ function UserMenu() {
   // let location = useLocation();
   // let navigate = useNavigate();
   return (
-    <div>
+    <div className="">
       <div>
         <span>Hello,{name}</span>
       </div>

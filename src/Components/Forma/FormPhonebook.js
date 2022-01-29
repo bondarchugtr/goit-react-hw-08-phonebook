@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import s from "./InputPhonebook.module.css";
+import s from "./InputPhonebook.module.scss";
 import { nanoid } from "nanoid";
 
 const Form = ({ onSubmit }) => {

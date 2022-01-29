@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import s from "./PhoneBook.module.css";
+import s from "./PhoneBook.module.scss";
 
 const ContactsList = ({ contacts = [], delContact, isLogin }) => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useResolvedPath, useMatch, Outlet } from "react-router-dom";
-import s from "./NavMenu.module.css";
+import s from "./NavMenu.module.scss";
 import UserMenu from "../UserMenu/UserMenu";
 import { useSelector } from "react-redux";
 import authSelectors from "../../redux/auth/auth-selector";

@@ -1,9 +1,11 @@
+@import "../../style/utils/variables.scss";
+
 .Forma {
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid royalblue;
-  background-color: rgb(102, 144, 184);
+  border: 1px solid $border;
+  background-color: $primary-background;
   padding: 25px;
 }
 .Forma__input {
@@ -31,6 +33,6 @@
 .Button__form:hover,
 .Button__form:focus {
   color: rgb(140, 226, 183);
-  background-color: rgb(121, 79, 79);
+  background-color: $background-color;
   cursor: pointer;
 }
