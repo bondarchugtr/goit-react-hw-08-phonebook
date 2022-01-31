@@ -4,19 +4,19 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid $border;
+  border: 1px solid $border-form;
   background-color: $primary-background;
   padding: 25px;
 }
 .Forma__input {
   border-radius: 10px;
-  border: 1px solid rgb(117, 140, 218);
+  border: 1px solid $border-input;
   padding: 5px;
 }
 
 .Forma__input:focus,
 .Forma__input:hover {
-  border-color: blueviolet;
+  border-color: $border-color-hover;
 }
 
 .nameinput {
@@ -27,12 +27,12 @@
 .Button__form {
   margin-top: 10px;
   border-radius: 10px;
-  border: 1px solid teal;
+  border: 1px solid $border-button-form;
   padding: 5px;
 }
 .Button__form:hover,
 .Button__form:focus {
-  color: rgb(140, 226, 183);
+  color: $border-button-form-hover;
   background-color: $background-color;
   cursor: pointer;
 }

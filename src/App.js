@@ -6,8 +6,10 @@ import { useDispatch } from "react-redux";
 import authOperations from "./redux/auth/auth-operations";
 import FormAuthorization from "./Components/AuthorizationHome/AuthorizationHome";
 import FormRegistration from "./Components/RegistryHome/RegisteryHome";
-import s from "./Components/PhoneBook/PhoneBook.module.scss";
 import globalScss from "./style/utils/global.module.scss";
+import PrivateRoute from "./Components/Route/PrivateRoute";
+import PublicRoute from "./Components/Route/PublicRoute";
+import PhoneBook from "./Components/PhoneBook/PhoneBook";
 function App() {
   const dispatch = useDispatch();
 
@@ -18,9 +20,34 @@ function App() {
     <div className={globalScss.container}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<FormAuthorization />} />
-          <Route path="/register" element={<FormRegistration />} />
-          <Route path="*" element={<NoMatch />} />
+          <Route
+            path="login"
+            element={
+              <PublicRoute
+                element={<FormAuthorization />}
+                redirectTo="/contacts"
+                restricted
+              />
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <PublicRoute
+                element={<FormRegistration />}
+                redirectTo="/contacts"
+                restricted
+              />
+            }
+          />
+          <Route
+            path="contacts/*"
+            element={
+              <PrivateRoute element={<PhoneBook />} redirectTo="/login" />
+            }
+          />
+
+          {/* <Route path="*" element={<NoMatch />} /> */}
         </Route>
       </Routes>
     </div>

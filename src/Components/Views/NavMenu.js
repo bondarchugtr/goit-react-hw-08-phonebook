@@ -30,7 +30,7 @@ export function Layout() {
             <ul className={s.nav__menu__container}>
               <li className={s.nav__menu__item}>
                 <NavLink
-                  to="/"
+                  to="/login"
                   className={
                     activeLinkAuth ? s.nav__menu__text__dec : s.nav__menu__text
                   }

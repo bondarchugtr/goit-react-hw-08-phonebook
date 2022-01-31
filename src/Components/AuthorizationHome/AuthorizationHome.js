@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import authOperations from "../../redux/auth/auth-operations";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import authSelectors from "../../redux/auth/auth-selector";
 // import globalScss from "../../style/utils/global.module.scss";
 import s from "../Forma/InputPhonebook.module.scss";
+
 const FormAuthorization = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const location = useLocation();
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
