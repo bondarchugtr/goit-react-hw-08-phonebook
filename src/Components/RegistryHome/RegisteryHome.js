@@ -4,33 +4,31 @@ import { useDispatch } from "react-redux";
 import authOperations from "../../redux/auth/auth-operations";
 import s from "../Forma/InputPhonebook.module.scss";
 const FormRegistration = () => {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  // const [name, setName] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  const [contact, setContact] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case "name":
-        return setName(value);
-      case "email":
-        return setEmail(value);
-      case "password":
-        return setPassword(value);
-      default:
-        return;
-    }
+    setContact((prev) => ({ ...prev, [name]: value }));
   };
   const handleSubmit = (el) => {
     el.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
+    dispatch(authOperations.register({ ...contact }));
     reset();
   };
 
   const reset = () => {
-    setName("");
-    setPassword("");
-    setEmail("");
+    setContact({
+      name: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -43,7 +41,7 @@ const FormRegistration = () => {
           id={nanoid()}
           type="text"
           name="name"
-          value={name}
+          value={contact.name}
           required
           onChange={handleChange}
         />
@@ -55,7 +53,7 @@ const FormRegistration = () => {
           id={nanoid()}
           type="text"
           name="password"
-          value={password}
+          value={contact.password}
           required
           onChange={handleChange}
         />
@@ -67,7 +65,7 @@ const FormRegistration = () => {
           id={nanoid()}
           type="text"
           name="email"
-          value={email}
+          value={contact.email}
           required
           onChange={handleChange}
         />

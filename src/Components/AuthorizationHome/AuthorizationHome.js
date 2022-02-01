@@ -2,58 +2,48 @@ import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import authOperations from "../../redux/auth/auth-operations";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
 import authSelectors from "../../redux/auth/auth-selector";
-// import globalScss from "../../style/utils/global.module.scss";
 import s from "../Forma/InputPhonebook.module.scss";
 
 const FormAuthorization = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const location = useLocation();
 
+  const [contact, setContact] = useState({
+    email: "",
+    password: "",
+  });
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case "email":
-        return setEmail(value);
-      case "password":
-        return setPassword(value);
-      default:
-        return;
-    }
+    setContact((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (el) => {
     el.preventDefault();
-    dispatch(authOperations.logIn({ email, password }));
+    dispatch(authOperations.logIn({ ...contact }));
     reset();
   };
   const reset = () => {
-    setEmail("");
-    setPassword("");
+    setContact({
+      email: "",
+      password: "",
+    });
   };
   return (
     <div className="">
       {!isLoggedIn && (
         <form onSubmit={handleSubmit} className={s.Forma}>
-          <label
-          // className={s.nameinput}
-          />
+          <label />
           <span>login</span>
           <input
             className={s.Forma__input}
             id={nanoid()}
             type="text"
             name="email"
-            value={email}
+            value={contact.email}
             required
             onChange={handleChange}
           />
-          <label
-          // className={s.nameinput}
-          />
+          <label />
           <span>Password</span>
 
           <input
@@ -61,7 +51,7 @@ const FormAuthorization = () => {
             id={nanoid()}
             type="text"
             name="password"
-            value={password}
+            value={contact.password}
             required
             onChange={handleChange}
           />
