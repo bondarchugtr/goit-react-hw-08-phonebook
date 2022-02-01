@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { Layout } from "./Components/Views/NavMenu";
 import { NoMatch } from "./Components/Views/NavMenu";
 import { useEffect } from "react";
@@ -10,6 +10,7 @@ import globalScss from "./style/utils/global.module.scss";
 import PrivateRoute from "./Components/Route/PrivateRoute";
 import PublicRoute from "./Components/Route/PublicRoute";
 import PhoneBook from "./Components/PhoneBook/PhoneBook";
+
 function App() {
   const dispatch = useDispatch();
 
@@ -20,6 +21,7 @@ function App() {
     <div className={globalScss.container}>
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Navigate replace to="/login" />} />
           <Route
             path="login"
             element={
@@ -46,7 +48,6 @@ function App() {
               <PrivateRoute element={<PhoneBook />} redirectTo="/login" />
             }
           />
-
           {/* <Route path="*" element={<NoMatch />} /> */}
         </Route>
       </Routes>
