@@ -27,6 +27,7 @@ const loading = createReducer(false, {
 const filterReducer = createReducer("", {
   [addFilter]: (_, action) => action.payload,
 });
+
 export default combineReducers({
   items: itemReducer,
   filter: filterReducer,
